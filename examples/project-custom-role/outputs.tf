@@ -1,21 +1,21 @@
 
 output "data_roles" {
   description = "Included roles details"
-  value       = data.google_iam_role.self
+  value       = module.iam_roles.data_roles
 }
 output "exclude_permissions" {
   description = "Requested permissions to exclude"
-  value       = local.exclude_permissions
+  value       = module.iam_roles.exclude_permissions
 }
 output "include_permissions" {
   description = "Requested permissions to include"
-  value       = local.include_permissions
+  value       = module.iam_roles.include_permissions
 }
 output "permissions" {
   description = "Actual permissions to grant"
-  value       = local.permissions
+  value       = module.iam_roles.permissions
 }
 output "roles" {
   description = "Included roles to get permissions from"
-  value       = local.roles
+  value       = module.iam_roles.roles
 }

@@ -1,8 +1,8 @@
-# terraform-google-module-template
+# terraform-google-iam-roles
 
-[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-google-module-template)](https://github.com/notablehealth/terraform-google-module-template/releases)
+[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-google-iam-roles)](https://github.com/notablehealth/terraform-google-iam-roles/releases)
 
-[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/module-template/google)
+[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/iam-roles/google)
 
 Template for creating a Terraform module for Google
 
@@ -26,6 +26,12 @@ module "MODULE-NAME" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+# terraform-google-iam-roles
+
+[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-google-iam-roles)](https://github.com/notablehealth/terraform-google-iam-roles/releases)
+
+[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/iam-roles/google)
+
 ## Requirements
 
 | Name | Version |
@@ -35,7 +41,9 @@ module "MODULE-NAME" {
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | 4.68.0 |
 
 ## Modules
 
@@ -43,13 +51,26 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [google_iam_role.self](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_role) | data source |
+| [google_iam_testable_permissions.unsupported_permissions](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_testable_permissions) | data source |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_roles"></a> [roles](#input\_roles) | Role objects to manage | <pre>list(object({<br>    description = string<br>    permissions = list(string)<br>    role_id     = string<br>    stage       = string<br>    title       = string<br>  }))</pre> | `[]` | no |
+| <a name="input_target_id"></a> [target\_id](#input\_target\_id) | The id of the target resource (organization or project) ID) | `string` | n/a | yes |
+| <a name="input_target_level"></a> [target\_level](#input\_target\_level) | The level at which to create the custom role (organization or project)) | `string` | `"project"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_data_roles"></a> [data\_roles](#output\_data\_roles) | Included roles details |
+| <a name="output_exclude_permissions"></a> [exclude\_permissions](#output\_exclude\_permissions) | Requested permissions to exclude |
+| <a name="output_include_permissions"></a> [include\_permissions](#output\_include\_permissions) | Requested permissions to include |
+| <a name="output_permissions"></a> [permissions](#output\_permissions) | Actual permissions to grant |
+| <a name="output_roles"></a> [roles](#output\_roles) | Included roles to get permissions from |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
