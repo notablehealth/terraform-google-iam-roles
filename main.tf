@@ -5,13 +5,18 @@
  *
  * [Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/iam-roles/google)
  *
+ * This module manages custom IAM roles in Google Cloud Platform.
+ *
+ * ## Features
+ *
+ * - Manage roles at the organization or project level
+ * - Include permissions from existing roles
+ * - Exclude permissions
+ * - Manage multiple roles at once
+ *
  */
 
 locals {
-  #custom_role_type = (var.target_level == "project") ?
-  #  google_project_iam_custom_role.project-custom-role[0].role_id :
-  #  google_organization_iam_custom_role.org-custom-role[0].role_id
-
   # Roles to get permissions from
   roles = compact(flatten([for role in var.roles : [
     for perm in role.permissions : (
@@ -42,4 +47,33 @@ locals {
       )
     ])
   }
+}
+
+resource "google_organization_iam_custom_role" "self" {
+  for_each = {
+    for role in var.roles :
+    role.role_id => role
+    if var.target_level == "organization"
+  }
+
+  org_id      = var.target_id
+  description = each.value.description
+  permissions = local.permissions[each.value.role_id]
+  role_id     = each.value.role_id
+  stage       = each.value.stage
+  title       = each.value.title
+}
+resource "google_project_iam_custom_role" "self" {
+  for_each = {
+    for role in var.roles :
+    role.role_id => role
+    if var.target_level == "project"
+  }
+
+  project     = var.target_id
+  description = each.value.description
+  permissions = local.permissions[each.value.role_id]
+  role_id     = each.value.role_id
+  stage       = each.value.stage
+  title       = each.value.title
 }

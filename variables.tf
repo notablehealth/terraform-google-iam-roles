@@ -5,7 +5,7 @@ variable "roles" {
     description = string
     permissions = list(string)
     role_id     = string
-    stage       = string
+    stage       = string # Validate: ALPHA, BETA, GA, DEPRECATED, DISABLED
     title       = string
   }))
   default = []

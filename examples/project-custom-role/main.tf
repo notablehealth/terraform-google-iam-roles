@@ -14,12 +14,13 @@ module "iam_roles" {
         "role:monitoring.viewer",
         "exclude:looker.backups.get",
         "exclude:looker.backups.list",
+        "exclude:resourcemanager.projects.list",
       ]
       role_id = "test.monitoring.viewer"
-      stage   = "ALPHA"
+      stage   = "BETA"
       title   = "Terraform Testing role"
     },
   ]
-  target_id    = "terraform-testing"
+  target_id    = var.target_id
   target_level = "project"
 }
