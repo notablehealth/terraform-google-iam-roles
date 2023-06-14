@@ -1,29 +1,3 @@
-# terraform-google-iam-roles
-
-[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-google-iam-roles)](https://github.com/notablehealth/terraform-google-iam-roles/releases)
-
-[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/iam-roles/google)
-
-Template for creating a Terraform module for Google
-
-## Features
-
-- base terraform files
-- pre-commit setup
-- GitHub actions setup
-
-## Usage
-
-Copy contents or create new repository on GitHub and use this as a template
-
-```hcl
-module "MODULE-NAME" {
-  source  = "ORGANIZATION/MODULE-NAME/google"
-  # Recommend pinning every module to a specific version
-  # version = "x.x.x"
-
-}
-```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 # terraform-google-iam-roles
